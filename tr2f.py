@@ -21,21 +21,21 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
-FORM_CLASS,_=loadUiType("tr2py.ui")
+FORM_CLASS,_=loadUiType(resource_path("tr2py.ui"))
 
 class Main(QMainWindow, FORM_CLASS):
     def __init__(self,parent=None):
         QWidget.__init__(self)
         super(Main,self).__init__(parent)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(os.path.join('icons', 'TR2.ico')))
+        self.setWindowIcon(QIcon(resource_path(os.path.join('icons', 'TR2.ico'))))
         self.Handel_Buttons()
         quit = QAction("Quit", self)
         quit.triggered.connect(self.closeEvent)
 
 
     def closeEvent(self, event):
-         close = QMessageBox.question(self, "QUIT", "Are you sure want to stop process?",QMessageBox.Yes | QMessageBox.No)
+         close = QMessageBox.question(self, "QUIT", "Are you sure want to close the program?",QMessageBox.Yes | QMessageBox.No)
          if close == QMessageBox.Yes:
              event.accept()
          else:
@@ -53,8 +53,6 @@ class Main(QMainWindow, FORM_CLASS):
         self.pushButton_7.clicked.connect(self.browse_file6)
         self.pushButton_8.clicked.connect(self.download2)
         self.pushButton_9.clicked.connect(self.clear)
-        self.pushButton_10.clicked.connect(self.takeinputs)
-
 
 
 
@@ -109,7 +107,7 @@ class Main(QMainWindow, FORM_CLASS):
             open_file2= self.lineEdit_2.text()
             save_file = self.lineEdit_3.text()
             out_table= open(os.path.join(save_file, f"{self.unique}_out.table.txt"), "w+")
-            out_table1= open(os.path.join(save_file, f"{self.unique}_out.table.spart"), "w+")
+            out_table1= open(os.path.join(save_file, f"{self.unique}_out.table_tr2.spart"), "w+")
             out_tree = open(os.path.join(save_file, f"{self.unique}_out.tree.tre"), "w+")
 
             if open_file2== "":
@@ -182,31 +180,6 @@ class Main(QMainWindow, FORM_CLASS):
         self.lineEdit_6.setText("")
 
 
-    def takeinputs(self):
-
-        comment1, done1 = QInputDialog.getText(
-             self, 'Input Dialog', 'Enter your first comment:')
-
-        comment2, done2 = QInputDialog.getText(
-           self, 'Input Dialog', 'Enter your second comment:')
-
-        if done1 and done2:
-            try:
-
-                save_file= self.lineEdit_3.text()
-                fin = open(os.path.join(save_file, "out.table.spart"), "r+")
-                data = fin.read()
-                data = data.replace("this is my first comment", str(comment1))
-                data = data.replace("this is my second comment", str(comment2))
-                fin.close()
-                fin = open(os.path.join(save_file,  "out.table.spart"), "w+")
-                fin.write(data)
-                fin.close()
-
-            except Exception:
-                QMessageBox.warning(self, "Warning", "The spart file is not generated, please generate the output files")
-                return
-            QMessageBox.information(self, "Information", "The spart file is updated successfully")
 
     def clear(self):
         self.lineEdit_4.setText("")

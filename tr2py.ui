@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>455</height>
+    <width>729</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap>icons/copy_21mm.png</pixmap>
+           <pixmap resource="photo.qrc">:/icons/copy_21mm.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -248,13 +248,6 @@ Fujisawa T, Aswad A, Barraclough TG (2016) Syst. Biol. 65: 759–771</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_10">
-            <property name="text">
-             <string>Add comment to spart</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="pushButton_9">
             <property name="text">
              <string>Clear_all+new analysis</string>
@@ -371,17 +364,10 @@ Fujisawa T, Aswad A, Barraclough TG (2016) Syst. Biol. 65: 759–771</string>
      </layout>
     </item>
    </layout>
-   <zorder>label_4</zorder>
-   <zorder>groupBox_2</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>lineEdit_4</zorder>
-   <zorder>layoutWidget</zorder>
-   <zorder>layoutWidget_2</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="photo.qrc"/>
   <include location="photo.qrc"/>
  </resources>
  <connections/>
